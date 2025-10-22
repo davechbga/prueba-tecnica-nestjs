@@ -6,7 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { User } from 'src/entities/user.entity';
 import { JwtStrategy } from './jwt.strategy';
-import { StringValue } from 'ms';
+import { jwtConfig } from '../config/jwt.config';
 
 
 @Module({
@@ -14,9 +14,9 @@ import { StringValue } from 'ms';
     TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'default-secret-for-development-only',
+      secret: jwtConfig.secret,
       signOptions: {
-        expiresIn: (process.env.JWT_EXPIRES_IN as StringValue) ?? '24h',
+        expiresIn: jwtConfig.expiresIn,
       },
     }),
   ],

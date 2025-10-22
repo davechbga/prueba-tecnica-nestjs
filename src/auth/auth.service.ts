@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 import { RegisterDto } from './dto/registro.dto';
-import bcrypt from 'node_modules/bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 
@@ -61,7 +61,9 @@ export class AuthService {
 
     // Generar token
     const payload = { id: user.id, email: user.email };
+    console.log('AuthService - Generando token con payload:', payload);
     const token = this.jwtService.sign(payload);
+    console.log('AuthService - Token generado:', token);
 
     return {
       access_token: token,
