@@ -95,3 +95,63 @@ Al iniciar la aplicación, se crean automáticamente 5 salas de ejemplo.
 ## 👤 Autor
 
 David Chiriboga
+
+
+
+## Prueba
+
+**1. Registrar usuario:**
+```
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "nombre": "Juan Pérez",
+  "email": "juan@email.com",
+  "password": "123456"
+}
+```
+
+**2. Login:**
+```
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "juan@email.com",
+  "password": "123456"
+}
+```
+
+Copia el `access_token` de la respuesta.
+
+**3. Ver salas (requiere token):**
+```
+GET http://localhost:3000/rooms
+Authorization: Bearer TU_TOKEN_AQUI
+```
+
+**4. Crear reserva:**
+```
+POST http://localhost:3000/reservations
+Authorization: Bearer TU_TOKEN_AQUI
+Content-Type: application/json
+
+{
+  "roomId": 1,
+  "fecha": "2025-10-25",
+  "horaInicio": "09:00",
+  "horaFin": "11:00"
+}
+```
+
+**5. Ver mis reservas:**
+```
+GET http://localhost:3000/reservations/user
+Authorization: Bearer TU_TOKEN_AQUI
+```
+
+**6. Cancelar reserva:**
+```
+DELETE http://localhost:3000/reservations/1
+Authorization: Bearer TU_TOKEN_AQUI
