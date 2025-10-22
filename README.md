@@ -36,6 +36,20 @@ cp .env.example .env
 # Editar .env con tus credenciales
 ```
 
+### Configuración para pruebas (env-test)
+
+Puedes crear un archivo `.env.test` o agregar estas variables en tu `.env` para el entorno de pruebas:
+
+```env
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=admin
+DATABASE_PASSWORD=admin123
+DATABASE_NAME=reservas_salas
+JWT_SECRET=fc9cd9a181b19fd267dc191eea7bf469
+JWT_EXPIRES_IN=24h
+```
+
 4. Levantar la base de datos
 ```bash
 docker-compose up -d
@@ -155,3 +169,4 @@ Authorization: Bearer TU_TOKEN_AQUI
 ```
 DELETE http://localhost:3000/reservations/1
 Authorization: Bearer TU_TOKEN_AQUI
+```
